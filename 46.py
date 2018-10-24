@@ -1,7 +1,17 @@
-# Runtime: 68 ms, faster than 22.13% of Python3 online submissions for Permutations.
+# Runtime: 52 ms, faster than 86.29% of Python3 online submissions for Permutations.
 # Difficulty: Medium 
 
 class Solution:
+    def memoize(fn):
+        cache = dict()
+        def memoized_fn(self, nums):
+            if tuple(nums) in cache:
+                return cache[tuple(nums)]
+            cache[tuple(nums)] = fn(self, nums)
+            return cache[tuple(nums)]
+        return memoized_fn
+    
+    @memoize
     def permute(self, nums):
         """
         :type nums: List[int]
